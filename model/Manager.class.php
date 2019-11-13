@@ -1,6 +1,7 @@
 <?php 
 	class Manager extends Conexao{
 
+		//Cadastro de cliente no banco de dados
 		public function insertClient($table, $data){
 
 			$pdo = parent::get_instance();
@@ -17,6 +18,16 @@
 			}
 
 			$statemente->execute();
+		}
+
+		//Listar clinete do banco de dados
+		public function listCliente($table){
+			$pdo = parent::get_instance();
+			$sql = "SELECT * FROM $table ORDER BY name ASC";
+			$statemente = $pdo->query($sql);
+			$statemente->execute();
+
+			return $statemente->fetchAll();
 		}
 
 	}

@@ -1,3 +1,12 @@
+<?php 
+	
+	include_once 'model/Conexao.class.php';
+	include_once 'model/Manager.class.php';
+
+	$manager = new Manager();
+
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,14 +41,15 @@
 				</tr>
 			</thead>
 			<tbody>
+				<?php foreach($manager->listCliente("registros") as $client): ?>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><?php echo $client['id'] ?></td>
+					<td><?php echo $client['name'] ?></td>
+					<td><?php echo $client['email'] ?></td>
+					<td><?php echo $client['cpf'] ?></td>
+					<td><?php echo date("d/m/Y", strtotime($client['birth'])); ?></td>
+					<td><?php echo $client['address'] ?></td>
+					<td><?php echo $client['phone'] ?></td>
 					<td>
 						<form method="POST">
 							<button class="btn btn-warning btn-xs">
@@ -55,6 +65,7 @@
 						</form>
 					</td>
 				</tr>
+				<?php endforeach; ?>
 			</tbody>
 		</table>
 
