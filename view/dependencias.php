@@ -36,6 +36,10 @@ h2 {
 	background-color: #f7f7f7;
 }
 
+form div div div{
+	margin-bottom: 20px;
+}
+
 </style>
 
 <!-- CDN's - JQuery e JQueryMask - Caso Seja Necessário, incluir na Página.
