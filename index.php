@@ -41,7 +41,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach($manager->listCliente("registros") as $client): ?>
+				<?php foreach($manager->listClient("registros") as $client): ?>
 				<tr>
 					<td><?php echo $client['id'] ?></td>
 					<td><?php echo $client['name'] ?></td>
@@ -58,7 +58,9 @@
 						</form>
 					</td>
 					<td>
-						<form method="POST" onclick="return confirm('Tem certeza que deseja excluir ?');">
+						<form method="POST" action="controller/delete_client.php" onclick="return confirm('Tem certeza que deseja excluir ?');">
+							<!--Manda i id escondido para poder ser excluido-->
+							<input type="hidden" name="id" value="<?=$client['id']?>">
 							<button class="btn btn-danger btn-xs">
 								<i class="fa fa-trash"></i>
 							</button>

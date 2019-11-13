@@ -20,8 +20,8 @@
 			$statemente->execute();
 		}
 
-		//Listar clinete do banco de dados
-		public function listCliente($table){
+		//Listar cliente do banco de dados
+		public function listClient($table){
 			$pdo = parent::get_instance();
 			$sql = "SELECT * FROM $table ORDER BY name ASC";
 			$statemente = $pdo->query($sql);
@@ -29,6 +29,16 @@
 
 			return $statemente->fetchAll();
 		}
+
+		//Escluir cliente do banco de dados
+		public function deleteClient($table, $id){
+			$pdo = parent::get_instance();
+			$sql = "DELETE FROM $table WHERE id = :id";
+			$statemente = $pdo -> prepare($sql);
+			$statemente->bindValue(":id" , $id);
+			$statemente-> execute();
+		}
+
 
 	}
  ?>
