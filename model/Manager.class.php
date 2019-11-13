@@ -39,6 +39,38 @@
 			$statemente-> execute();
 		}
 
+		public function getInfo($table, $id){
+			$pdo = parent::get_instance();
+			$sql = "SELECT * FROM  $table WHERE id = :id";
+			$statemente = $pdo->prepare($sql);
+			$statemente->bindValue(":id", $id);
+			$statemente->execute();
+
+			return $statemente->fetchAll();
+
+		}
+
+		public function updateClient($table, $data, $id){
+			$pdo = parent::get_instance();
+			//Váriavel novos vlaores ira levar os novos valores ao banco de dados
+			$new_values= "";
+			
+			$sql = "";
+			foreach ($data as $key => $value) {
+				$new_values .= "$key=:$key, "; 
+			}
+			$new_values = substr($new_values, 0, -2);
+
+			$sql = "UPDATE $table SET $new_values WHERE id = :id";
+			$statemente = $pdo->prepare($sql);
+			
+			foreach($data as $key  => $value){
+				$statemente->bindValue(":$key", $value, PDO::PARAM_STR);
+			}
+
+			$statemente->execute();
+		}
+
 
 	}
  ?>

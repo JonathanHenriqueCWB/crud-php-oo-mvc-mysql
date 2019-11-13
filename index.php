@@ -42,31 +42,33 @@
 			</thead>
 			<tbody>
 				<?php foreach($manager->listClient("registros") as $client): ?>
-				<tr>
-					<td><?php echo $client['id'] ?></td>
-					<td><?php echo $client['name'] ?></td>
-					<td><?php echo $client['email'] ?></td>
-					<td><?php echo $client['cpf'] ?></td>
-					<td><?php echo date("d/m/Y", strtotime($client['birth'])); ?></td>
-					<td><?php echo $client['address'] ?></td>
-					<td><?php echo $client['phone'] ?></td>
-					<td>
-						<form method="POST">
-							<button class="btn btn-warning btn-xs">
-								<i class="fa fa-user-edit"></i>
-							</button>
-						</form>
-					</td>
-					<td>
-						<form method="POST" action="controller/delete_client.php" onclick="return confirm('Tem certeza que deseja excluir ?');">
-							<!--Manda i id escondido para poder ser excluido-->
-							<input type="hidden" name="id" value="<?=$client['id']?>">
-							<button class="btn btn-danger btn-xs">
-								<i class="fa fa-trash"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
+					<tr>
+						<td><?php echo $client['id'] ?></td>
+						<td><?php echo $client['name'] ?></td>
+						<td><?php echo $client['email'] ?></td>
+						<td><?php echo $client['cpf'] ?></td>
+						<td><?php echo date("d/m/Y", strtotime($client['birth'])); ?></td>
+						<td><?php echo $client['address'] ?></td>
+						<td><?php echo $client['phone'] ?></td>
+						<td>
+							<form method="POST" action="view/page_update.php">
+								<!--Manda i id escondido para poder ser excluido-->
+								<input type="hidden" name="id" value="<?=$client['id']?>">
+								<button class="btn btn-warning btn-xs">
+									<i class="fa fa-user-edit"></i>
+								</button>
+							</form>
+						</td>
+						<td>
+							<form method="POST" action="controller/delete_client.php" onclick="return confirm('Tem certeza que deseja excluir ?');">
+								<!--Manda i id escondido para poder ser excluido-->
+								<input type="hidden" name="id" value="<?=$client['id']?>">
+								<button class="btn btn-danger btn-xs">
+									<i class="fa fa-trash"></i>
+								</button>
+							</form>
+						</td>
+					</tr>
 				<?php endforeach; ?>
 			</tbody>
 		</table>
