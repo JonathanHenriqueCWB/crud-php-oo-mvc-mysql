@@ -17,7 +17,7 @@
 
 			<?php foreach($maneger->getInfo("registros", $id) as $client_info): ?>
 
-				<div class="col-md-6">
+				<div class="col-md-6"> 
 					Nome: <i class="fa fa-user"></i>
 					<input class="form-control" type="form-control" type="text" name="name" required="true" autofocus="" value="<?=$client_info['name']?>">
 				</div>
